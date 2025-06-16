@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/Course_DB # Replace with your actual MongoDB URI
+  # webflux:
+  #   base-path: /api
+
+server:
+  port: 8086

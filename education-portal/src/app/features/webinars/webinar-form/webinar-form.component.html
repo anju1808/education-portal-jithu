@@ -1,0 +1,89 @@
+<div class="webinar-form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Add New Webinar</mat-card-title>
+      <mat-card-subtitle
+        >Create a new webinar for students to register</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <mat-card-content>
+      <form
+        [formGroup]="webinarForm"
+        (ngSubmit)="onSubmit()"
+        class="webinar-form"
+      >
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Webinar Title</mat-label>
+          <input
+            matInput
+            formControlName="title"
+            placeholder="Enter webinar title"
+          />
+          <mat-error *ngIf="webinarForm.get('title')?.hasError('required')">
+            Webinar title is required
+          </mat-error>
+          <mat-error *ngIf="webinarForm.get('title')?.hasError('minlength')">
+            Title must be at least 3 characters
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Tutor Name</mat-label>
+          <input
+            matInput
+            formControlName="tutor"
+            placeholder="Enter tutor name"
+          />
+          <mat-error *ngIf="webinarForm.get('tutor')?.hasError('required')">
+            Tutor name is required
+          </mat-error>
+          <mat-error *ngIf="webinarForm.get('tutor')?.hasError('minlength')">
+            Tutor name must be at least 2 characters
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Start Time</mat-label>
+          <input matInput type="datetime-local" formControlName="startTime" />
+          <mat-error *ngIf="webinarForm.get('startTime')?.hasError('required')">
+            Start time is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>End Time</mat-label>
+          <input matInput type="datetime-local" formControlName="endTime" />
+          <mat-error *ngIf="webinarForm.get('endTime')?.hasError('required')">
+            End time is required
+          </mat-error>
+        </mat-form-field>
+
+        <div *ngIf="error" class="error-message">
+          <mat-icon color="warn">error</mat-icon>
+          <span>{{ error }}</span>
+        </div>
+
+        <div class="form-actions">
+          <button
+            type="button"
+            mat-button
+            (click)="onCancel()"
+            [disabled]="submitting"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="webinarForm.invalid || submitting"
+          >
+            <mat-spinner *ngIf="submitting" diameter="20"></mat-spinner>
+            <span *ngIf="!submitting">Create Webinar</span>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

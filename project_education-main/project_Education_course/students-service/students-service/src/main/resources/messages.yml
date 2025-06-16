@@ -1,0 +1,10 @@
+validation:
+  messages:
+    name:
+      NotEmpty: "Name cannot be empty"
+      Size: "Name must be between {min} and {max} characters"
+    email:
+      Email: "Email is not valid"
+      NotEmpty: "Email cannot be empty"
+    webinarId:
+      NotEmpty: "Webinar ID cannot be empty"

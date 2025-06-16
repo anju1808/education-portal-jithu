@@ -1,0 +1,99 @@
+<div class="student-form-container">
+  <div class="header">
+    <h1>Add New Student</h1>
+    <button mat-button routerLink="/students">
+      <mat-icon>arrow_back</mat-icon>
+      Back to Students
+    </button>
+  </div>
+
+  <mat-card class="form-card">
+    <mat-card-content>
+      <div *ngIf="loading" class="loading-container">
+        <mat-spinner></mat-spinner>
+        <p>Loading webinars...</p>
+      </div>
+
+      <div *ngIf="error" class="error-container">
+        <mat-icon color="warn">error</mat-icon>
+        <p>{{ error }}</p>
+        <button mat-raised-button color="primary" (click)="loadWebinars()">
+          Try Again
+        </button>
+      </div>
+
+      <form
+        *ngIf="!loading && !error"
+        [formGroup]="studentForm"
+        (ngSubmit)="onSubmit()"
+        class="student-form"
+      >
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Full Name</mat-label>
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Enter student's full name"
+          />
+          <mat-error *ngIf="studentForm.get('name')?.hasError('required')">
+            Name is required
+          </mat-error>
+          <mat-error *ngIf="studentForm.get('name')?.hasError('minlength')">
+            Name must be at least 3 characters long
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            type="email"
+            placeholder="Enter student's email"
+          />
+          <mat-error *ngIf="studentForm.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="studentForm.get('email')?.hasError('email')">
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Webinar</mat-label>
+          <mat-select
+            formControlName="webinarId"
+            placeholder="Select a webinar"
+          >
+            <mat-option *ngFor="let webinar of webinars" [value]="webinar.id">
+              {{ webinar.title }} - {{ webinar.tutor }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="studentForm.get('webinarId')?.hasError('required')">
+            Please select a webinar
+          </mat-error>
+        </mat-form-field>
+
+        <div class="form-actions">
+          <button
+            type="button"
+            mat-button
+            (click)="onCancel()"
+            [disabled]="submitting"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="studentForm.invalid || submitting"
+          >
+            <mat-spinner *ngIf="submitting" diameter="20"></mat-spinner>
+            <span *ngIf="!submitting">Add Student</span>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

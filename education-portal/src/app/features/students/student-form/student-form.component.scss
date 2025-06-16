@@ -1,0 +1,68 @@
+.student-form-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  
+  h1 {
+    margin: 0;
+    color: #333;
+  }
+}
+
+.form-card {
+  padding: 20px;
+}
+
+.loading-container, .error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+  }
+  
+  p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 16px;
+  }
+}
+
+.student-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 20px;
+    
+    button {
+      min-width: 120px;
+      
+      mat-spinner {
+        margin-right: 8px;
+      }
+    }
+  }
+}
