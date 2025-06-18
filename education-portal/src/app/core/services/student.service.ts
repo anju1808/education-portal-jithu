@@ -8,7 +8,7 @@ import { Student, WebinarWithStudents } from '../models/webinar.model';
   providedIn: 'root'
 })
 export class StudentService {
-  private apiUrl = 'http://127.0.0.1:4200/api/students';
+  private apiUrl = 'http://20.64.226.218:4200/api/students';
 
   constructor(private http: HttpClient) { }
 
