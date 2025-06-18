@@ -16,7 +16,7 @@ public class CorsConfig implements WebFluxConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins(
                     "http://localhost:4200",
-                    "http://127.0.0.1:4200",
+                    "http://20.64.226.218:4200",
                     "http://20.204.51.78:4200" // ✅ Azure VM frontend
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
